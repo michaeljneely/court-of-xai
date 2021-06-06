@@ -66,7 +66,7 @@ local embedding_dim = 300;
                 "captum": {
                     "type": "captum-lime",
                     "attribute_args": {
-                        "n_samples": 1000
+                        "n_samples": 5000
                     }
                 }
             },
