@@ -161,7 +161,7 @@ class CaptumAttribution(Registrable):
         baselines = tuple(embedding(idx) for idx in pad_idxs)
 
         self.logger.info(f'INPUTS DEVICE: {inputs[0].device}')
-        self.logger.info(f'TARGETS DEVICE: {target.device}')
+        # self.logger.info(f'TARGETS DEVICE: {target.device}')
         self.logger.info(f'BASELINES DEVICE: {pad_idx.device}')
         attr_kwargs = {
             'inputs' : inputs,
