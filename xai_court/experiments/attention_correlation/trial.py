@@ -114,6 +114,11 @@ class AttentionCorrelationTrial(Registrable):
                 batch_scores = []
                 for sub_batch in utils.batch(labeled_batch, 2):
                     batch_scores.extend(interpreter.saliency_interpret_instances(sub_batch).values())
+            elif 'lime' in interpreter.id:
+                batch_scores = []
+                for sub_batch in utils.batch(labeled_batch, 1):
+                    batch_scores.extend(interpreter.saliency_interpret_instances(sub_batch).values())
+                    self.logger.info('1 sample interpreted')
             else:
                 batch_scores = interpreter.saliency_interpret_instances(labeled_batch).values()
 
