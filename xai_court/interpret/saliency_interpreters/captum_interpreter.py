@@ -176,8 +176,10 @@ class CaptumAttribution(Registrable):
             input_tensor = inputs[0]
             bs, seq_len, emb_dim = input_tensor.shape
             feature_mask = torch.tensor(list(range(bs * seq_len))).reshape([bs, seq_len, 1])
+            feature_mask = feature_mask.to(inputs[0].device)
             feature_mask = feature_mask.expand(-1, -1, emb_dim)
             attr_kwargs['feature_mask'] = feature_mask # (bs, seq_len, emb_dim)
+            self.logger.info(f'FEATURE MASK DEVICE: {feature_mask.device}')
 
         return attr_kwargs
 
