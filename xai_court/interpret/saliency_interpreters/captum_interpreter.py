@@ -160,6 +160,9 @@ class CaptumAttribution(Registrable):
         pad_idxs = tuple(pad_idx.expand(tensor.size()[:2]) for tensor in inputs)
         baselines = tuple(embedding(idx) for idx in pad_idxs)
 
+        self.logger.info(f'INPUTS DEVICE: {inputs.device}')
+        self.logger.info(f'TARGETS DEVICE: {target.device}')
+        self.logger.info(f'BASELINES DEVICE: {pad_idx.device}')
         attr_kwargs = {
             'inputs' : inputs,
             'target': target,
