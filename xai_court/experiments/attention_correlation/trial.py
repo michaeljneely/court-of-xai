@@ -299,6 +299,7 @@ class AttentionCorrelationTrial(Registrable):
                 cuda_device = -1
 
         check_for_gpu(cuda_device)
+        logger.info(f'Using cuda device: {cuda_device}')
 
         archive = load_archive(os.path.join(serialization_dir, 'model.tar.gz'), cuda_device=cuda_device)
         predictor = Predictor.from_archive(archive, archive.config.params['model']['type'])
