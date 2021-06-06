@@ -116,6 +116,10 @@ class AttentionCorrelationTrial(Registrable):
                     batch_scores.extend(interpreter.saliency_interpret_instances(sub_batch).values())
                     if progress_bar:
                         progress_bar.update(2)
+            # Per Captum docs:
+            # It is recommended to only provide a single example as input (tensors with first dimension or
+            # batch size = 1). This is because LIME is generally used for sample-based interpretability,
+            # training a separate interpretable model to explain a model’s prediction on each individual example.
             elif 'lime' in interpreter.id:
                 batch_scores = []
                 for sub_batch in utils.batch(labeled_batch, 1):
@@ -125,7 +129,7 @@ class AttentionCorrelationTrial(Registrable):
             else:
                 batch_scores = interpreter.saliency_interpret_instances(labeled_batch).values()
                 if progress_bar:
-                    progress_bar.update(len(batch))
+                    progress_bar.update(len(batch[0]))
 
             # # There can be more than one array of scores for an instance (e.g. in the pair sequence case)
             scores = [[np.asarray(scoreset) for scoreset in v.values()] for v in batch_scores]
