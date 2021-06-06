@@ -1,11 +1,6 @@
 from typing import Any, List, Dict, Tuple, Union, Iterable, cast
 
-from lime import lime_text
-from lime.lime_text import LimeTextExplainer
-
 import torch
-import numpy
-import itertools
 import logging
 import warnings
 
