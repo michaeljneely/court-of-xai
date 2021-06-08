@@ -61,7 +61,7 @@ local transformer_model = "distilbert-base-uncased";
                 "captum": {
                     "type": "captum-lime",
                     "attribute_args": {
-                        "n_samples": 5000
+                        "n_samples": 1000
                     }
                 }
             }
