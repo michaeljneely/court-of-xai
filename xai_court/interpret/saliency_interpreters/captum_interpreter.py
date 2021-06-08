@@ -170,25 +170,15 @@ class CaptumAttribution(Registrable):
         # For methods that require a feature mask, define each token as one feature
         if mask_features_by_token:
             # see: https://captum.ai/api/lime.html for the definition of a feature mask
-            if len(inputs) == 1:
-                input_tensor = inputs[0]
+            feature_mask_tuple = tuple()
+            for i in range(len(inputs)):
+                input_tensor = inputs[i]
                 bs, seq_len, emb_dim = input_tensor.shape
                 feature_mask = torch.tensor(list(range(bs * seq_len))).reshape([bs, seq_len, 1])
                 feature_mask = feature_mask.to(inputs[0].device)
                 feature_mask = feature_mask.expand(-1, -1, emb_dim)
-                attr_kwargs['feature_mask'] = feature_mask # (bs, seq_len, emb_dim)
-            elif len(inputs) >= 2:
-                feature_mask_tuple = tuple()
-                for i in range(len(inputs)):
-                    input_tensor = inputs[i]
-                    bs, seq_len, emb_dim = input_tensor.shape
-                    feature_mask = torch.tensor(list(range(bs * seq_len))).reshape([bs, seq_len, 1])
-                    feature_mask = feature_mask.to(inputs[0].device)
-                    feature_mask = feature_mask.expand(-1, -1, emb_dim)
-                    feature_mask_tuple += (feature_mask,)
-                attr_kwargs['feature_mask'] = feature_mask_tuple # (bs, seq_len, emb_dim)
-            else:
-                raise ValueError('hmm')
+                feature_mask_tuple += (feature_mask,) # (bs, seq_len, emb_dim)
+            attr_kwargs['feature_mask'] = feature_mask_tuple
 
         return attr_kwargs
 
