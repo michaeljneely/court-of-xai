@@ -53,8 +53,7 @@ local transformer_model = "distilbert-base-uncased";
     },
     "attention_experiment": {
         "attention_aggregator_methods": [
-            "roll",
-            "flow"
+            "avg"
         ],
         "feature_importance_measures": [
             {
