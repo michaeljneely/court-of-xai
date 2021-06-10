@@ -69,11 +69,51 @@ local embedding_dim = 300;
                         "n_samples": 1000
                     }
                 }
+            },
+            {
+                "type": "captum",
+                "captum": "captum-integrated-gradients"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-deepliftshap"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-gradientshap"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-deeplift"
             }
         ],
         "correlation_measures": [
             {
                 "type": "kendall_tau"
+            },
+            {
+                "type": "spearman_rho"
+            },
+            {
+                "type": "pearson_r"
+            },
+            {
+                "type": "kendall_top_k_variable",
+                "percent_top_k": [
+                    0.25,
+                    0.5,
+                    1.0
+                ],
+            },
+            {
+                "type": "kendall_top_k_fixed",
+                "fixed_top_k": [
+                    5,
+                    10
+                ],
+            },
+            {
+                "type": "kendall_top_k_non_zero"
             }
         ],
         "dataset": "Quora",
