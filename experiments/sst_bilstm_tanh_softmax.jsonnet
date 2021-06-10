@@ -70,6 +70,22 @@ local batch_size = 64;
                         "n_samples": 1000
                     }
                 }
+            },
+            {
+                "type": "captum",
+                "captum": "captum-integrated-gradients"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-deepliftshap"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-gradientshap"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-deeplift"
             }
         ],
         "correlation_measures": [
