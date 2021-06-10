@@ -111,9 +111,6 @@ local embedding_dim = 300;
                     5,
                     10
                 ],
-            },
-            {
-                "type": "kendall_top_k_non_zero"
             }
         ],
         "dataset": "MNLI",
