@@ -52,7 +52,8 @@ local batch_size = 64;
     },
     "attention_experiment": {
         "attention_aggregator_methods": [
-            "avg"
+            "roll",
+            "flow"
         ],
         "feature_importance_measures": [
             {
@@ -63,11 +64,48 @@ local batch_size = 64;
                         "n_samples": 1000
                     }
                 }
+            },
+            {
+                "type": "captum",
+                "captum": "captum-integrated-gradients"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-deepliftshap"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-gradientshap"
+            },
+            {
+                "type": "captum",
+                "captum": "captum-deeplift"
             }
         ],
         "correlation_measures": [
             {
                 "type": "kendall_tau"
+            },
+            {
+                "type": "spearman_rho"
+            },
+            {
+                "type": "pearson_r"
+            },
+            {
+                "type": "kendall_top_k_variable",
+                "percent_top_k": [
+                    0.25,
+                    0.5,
+                    1.0,
+                ],
+            },
+            {
+                "type": "kendall_top_k_fixed",
+                "fixed_top_k": [
+                    5,
+                    10
+                ],
             }
         ],
         "dataset": "SNLI",
